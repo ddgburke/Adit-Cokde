@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kolase Bahan Alam</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #f5fafb;
+      color: #183d45;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 16px 20px;
+      background: rgba(245,250,251,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #dcebed;
+    }
+
+    .nav {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #287789;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #557177;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 90px 20px;
+    }
+
+    .label {
+      color: #4798a8;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+    }
+
+    h2 {
+      font-size: clamp(32px, 6vw, 48px);
+      line-height: 1.12;
+      color: #194d58;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #647a7f;
+      font-size: 15px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 125px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 78px);
+      line-height: .98;
+      color: #174b57;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #5caabb;
+    }
+
+    .hero p {
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: #dff1f4;
+      color: #347e8e;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 13px 21px;
+      border-radius: 30px;
+      background: #287789;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 30px 30px 75px 30px;
+      box-shadow: 0 25px 60px rgba(31,90,103,.18);
+    }
+
+    .price-float {
+      position: absolute;
+      bottom: 22px;
+      left: -18px;
+      background: white;
+      padding: 15px 19px;
+      border-radius: 17px;
+      box-shadow: 0 12px 35px rgba(30,85,97,.16);
+    }
+
+    .price-float small {
+      display: block;
+      color: #82969a;
+      font-size: 10px;
+    }
+
+    .price-float strong {
+      color: #247286;
+      font-size: 18px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dfebed;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 12px 35px rgba(34,87,99,.06);
+    }
+
+    .card h3 {
+      color: #245e6b;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .member {
+      padding: 14px 0;
+      border-bottom: 1px solid #e5edef;
+      font-size: 14px;
+      color: #536c72;
+    }
+
+    .school {
+      margin-top: 20px;
+      background: #e8f5f7;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #317687;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* PRODUCT */
+
+    .product-text {
+      max-width: 780px;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: #e7f4f6;
+      padding: 25px;
+      border-radius: 23px;
+    }
+
+    .feature h3 {
+      font-size: 21px;
+      color: #276878;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      font-size: 14px;
+    }
+
+    /* INSPIRATION */
+
+    .inspiration {
+      max-width: 1010px;
+      margin: 15px auto;
+      padding: 60px 25px;
+      background: #174c57;
+      border-radius: 38px;
+    }
+
+    .inspiration h2 {
+      color: white;
+    }
+
+    .inspiration p {
+      color: #c8dfe2;
+      max-width: 780px;
+    }
+
+    .inspiration .label {
+      color: #91d2db;
+    }
+
+    /* UNIQUE */
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .split .card h3 {
+      font-size: 26px;
+    }
+
+    /* GALLERY */
+
+    .gallery-title {
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .gallery-main {
+      background: white;
+      padding: 12px;
+      border-radius: 28px;
+      border: 1px solid #dfebed;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .gallery-side {
+      background: #dff1f4;
+      border-radius: 28px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .gallery-side h3 {
+      font-size: 30px;
+      color: #205d69;
+      margin-bottom: 15px;
+    }
+
+    /* PRICE */
+
+    .price-section {
+      background: #e1f2f4;
+      border-radius: 35px;
+      text-align: center;
+      padding: 55px 25px;
+    }
+
+    .price {
+      font-family: "Playfair Display", serif;
+      font-size: 48px;
+      color: #1d6878;
+      margin: 10px 0;
+    }
+
+    .price-section p {
+      max-width: 650px;
+      margin: auto;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      max-width: 1050px;
+      margin: 0 auto 30px;
+      padding: 65px 25px;
+      text-align: center;
+      background: #123f48;
+      border-radius: 38px;
+    }
+
+    .contact h2 {
+      color: white;
+    }
+
+    .contact p {
+      color: #c5dde0;
+      margin-bottom: 25px;
+    }
+
+    .contact .label {
+      color: #8fd0d9;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .ig {
+      background: white;
+      color: #216879;
+    }
+
+    .phone {
+      border: 1px solid rgba(255,255,255,.35);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px 35px;
+      color: #829397;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:760px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 75px 18px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 115px;
+        gap: 35px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-image img {
+        aspect-ratio: 1 / 1.08;
+      }
+
+      .price-float {
+        left: 12px;
+      }
+
+      .about-grid,
+      .split,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .inspiration {
+        margin: 15px 18px;
+        padding: 40px 25px;
+        border-radius: 30px;
+      }
+
+      .gallery-main img {
+        min-height: 320px;
+      }
+
+      .contact {
+        margin: 0 18px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav">
+      <div class="brand">KOLASE ALAM.</div>
+
+      <ul class="nav-links">
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#inspirasi">Inspirasi</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#kontak">Pesan</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div>
+      <div class="tag">HANDMADE • NATURAL • KRIYA</div>
+
+      <h1>
+        Ketika alam<br>
+        menjadi <span>seni.</span>
+      </h1>
+
+      <p>
+        Kolase Bahan Alam merupakan karya kriya yang
+        memanfaatkan daun, ranting, batang kecil, dan
+        bahan tumbuhan lainnya menjadi karya dekorasi
+        berbentuk burung dan kupu-kupu.
+      </p>
+
+      <a href="#produk" class="btn">
+        Jelajahi Karya ↓
+      </a>
+    </div>
+
+    <div class="hero-image">
+
+      <img
+        src="IMG-20260924-WA0025.jpg"
+        alt="Kolase Bahan Alam">
+
+      <div class="price-float">
+        <small>HARGA</small>
+        <strong>Rp45.000</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TENTANG KAMI -->
+  <section id="tentang">
+
+    <div class="label">01 — TENTANG KAMI</div>
+
+    <h2>Dibuat oleh<br>dua kreator.</h2>
+
+    <div class="about-grid">
+
+      <div class="card">
+
+        <h3>Anggota</h3>
+
+        <div class="member">
+          01<br>
+          <strong>Putu Aditya Mandala Pratama</strong>
+        </div>
+
+        <div class="member">
+          02<br>
+          <strong>Tjokorda Gede Wira Mahadi Natha</strong>
+        </div>
+
+        <div class="school">
+          SMA NEGERI 6 DENPASAR
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <p>
+          Kami mengolah bahan-bahan alami yang mudah
+          ditemukan di lingkungan sekitar menjadi karya
+          kriya yang memiliki nilai keindahan dan nilai
+          tambah.
+        </p>
+
+        <br>
+
+        <p>
+          Dengan memanfaatkan bentuk, warna, dan tekstur
+          alami dari setiap bahan, kami menghasilkan karya
+          yang memiliki kesan natural, unik, sederhana,
+          dan artistik.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUK -->
+  <section id="produk">
+
+    <div class="label">02 — TENTANG PRODUK</div>
+
+    <h2>Kolase Bahan Alam</h2>
+
+    <div class="product-text">
+
+      <p>
+        Bahan seperti daun kering, daun hijau, ranting,
+        batang kecil, dan bahan tumbuhan lainnya disusun
+        dan dikombinasikan sehingga membentuk objek burung
+        dan kupu-kupu.
+      </p>
+
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <h3>Natural</h3>
+        <p>
+          Menggunakan karakter asli bahan alam sebagai
+          bagian dari tampilan karya.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>Unik</h3>
+        <p>
+          Setiap bahan memiliki bentuk, warna, dan tekstur
+          yang berbeda.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>Artistik</h3>
+        <p>
+          Bahan sederhana diubah menjadi dekorasi yang
+          memiliki nilai seni.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- IDE -->
+  <div class="inspiration" id="inspirasi">
+
+    <div class="label">03 — IDE & INSPIRASI</div>
+
+    <h2>Dari bahan sederhana,<br>lahir sebuah karya.</h2>
+
+    <p>
+      Ide pembuatan Kolase Bahan Alam berawal dari keinginan
+      untuk memanfaatkan daun, ranting, dan bahan alam yang
+      mudah ditemukan di lingkungan sekitar menjadi sebuah
+      karya seni yang menarik.
+    </p>
+
+    <br>
+
+    <p>
+      Bahan-bahan tersebut diolah dan disusun dengan
+      memperhatikan bentuk, warna, serta teksturnya untuk
+      menghasilkan objek burung dan kupu-kupu.
+    </p>
+
+    <br>
+
+    <p>
+      Karya ini menunjukkan bahwa bahan alam yang sederhana
+      dapat memiliki nilai seni sekaligus nilai ekonomi dan
+      dapat dikembangkan menjadi berbagai bentuk dekorasi.
+    </p>
+
+  </div>
+
+
+  <!-- KEUNIKAN & TARGET -->
+  <section>
+
+    <div class="split">
+
+      <div class="card">
+
+        <div class="label">04</div>
+
+        <h3>Keunikan Produk</h3>
+
+        <p>
+          Keunikan Kolase Bahan Alam terletak pada
+          penggunaan bahan alami yang memiliki bentuk,
+          warna, dan tekstur berbeda-beda.
+        </p>
+
+        <br>
+
+        <p>
+          Perbedaan karakter setiap daun membuat setiap
+          karya memiliki tampilan yang tidak sepenuhnya
+          sama dengan karya lainnya.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="label">05</div>
+
+        <h3>Target Pasar</h3>
+
+        <p>
+          Produk ditujukan kepada masyarakat yang tertarik
+          pada kerajinan tangan, seni, dan hiasan dengan
+          konsep alami.
+        </p>
+
+        <br>
+
+        <p>
+          Targetnya meliputi pelajar, guru, keluarga,
+          pecinta kerajinan, serta masyarakat umum.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GALERI FOTO -->
+  <section id="galeri">
+
+    <div class="label">06 — GALERI</div>
+
+    <div class="gallery-title">
+
+      <h2>Satu karya,<br>banyak karakter.</h2>
+
+      <p>
+        Setiap bahan alami memberikan bentuk dan tekstur
+        yang berbeda sehingga menghasilkan karya yang
+        memiliki karakter tersendiri.
+      </p>
+
+    </div>
+
+    <div class="gallery">
+
+      <div class="gallery-main">
+
+        <img
+          src="IMG-20260924-WA0025.jpg"
+          alt="Hasil Kolase Bahan Alam">
+
+      </div>
+
+      <div class="gallery-side">
+
+        <div class="label">HASIL KARYA</div>
+
+        <h3>Natural.<br>Unik.<br>Handmade.</h3>
+
+        <p>
+          Karya dekorasi yang dibuat dengan memadukan
+          kreativitas dan keindahan bahan alam.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HARGA -->
+  <section>
+
+    <div class="price-section">
+
+      <div class="label">07 — HARGA PRODUK</div>
+
+      <h2>Kolase Bahan Alam</h2>
+
+      <div class="price">
+        Rp45.000
+      </div>
+
+      <p>
+        Harga mempertimbangkan biaya bahan, media,
+        tingkat kesulitan, waktu pengerjaan, dan nilai
+        kreativitas karya.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- KONTAK -->
+  <div class="contact" id="kontak">
+
+    <div class="label">08 — PESAN KARYA</div>
+
+    <h2>Tertarik dengan<br>karya kami?</h2>
+
+    <p>
+      Jika tertarik, silakan hubungi kami melalui
+      Instagram atau nomor telepon.
+    </p>
+
+    <div class="contact-buttons">
+
+      <a
+        class="contact-btn ig"
+        href="https://instagram.com/adityamandala21"
+        target="_blank">
+        @adityamandala21
+      </a>
+
+      <a
+        class="contact-btn phone"
+        href="tel:08990315373">
+        08990315373
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+    KOLASE BAHAN ALAM · SMA NEGERI 6 DENPASAR<br>
+    Handmade with nature & creativity.
+  </footer>
+
+</body>
+</html>
